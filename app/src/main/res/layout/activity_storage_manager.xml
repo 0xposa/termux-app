@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/storage_manager_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_dark_background"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/m3_dark_surface_container">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/storage_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/m3_dark_on_surface"
+            app:title="Storage Manager"
+            app:titleTextColor="@color/m3_dark_on_surface" />
+
+        <!-- Current Path Navigation Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/button_nav_up"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_pill_badge"
+                android:contentDescription="Parent folder"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/m3_dark_primary" />
+
+            <TextView
+                android:id="@+id/text_current_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_badge"
+                android:ellipsize="start"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="7dp"
+                android:textColor="@color/m3_dark_on_surface"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="~/storage/shared" />
+        </LinearLayout>
+
+        <!-- Quick location chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_home"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:text="~ Home"
+                    android:textColor="@color/m3_dark_on_surface"
+                    app:chipBackgroundColor="@color/m3_dark_surface_container_highest"
+                    app:chipIcon="@drawable/ic_terminal"
+                    app:chipIconTint="@color/m3_dark_primary"
+                    app:chipStrokeColor="@color/m3_dark_card_stroke"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_shared"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:text="Shared (/sdcard)"
+                    android:textColor="@color/m3_dark_on_surface"
+                    app:chipBackgroundColor="@color/m3_dark_surface_container_highest"
+                    app:chipIcon="@drawable/ic_sd_storage"
+                    app:chipIconTint="@color/m3_dark_secondary"
+                    app:chipStrokeColor="@color/m3_dark_card_stroke"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_storage_root"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="~/storage"
+                    android:textColor="@color/m3_dark_on_surface"
+                    app:chipBackgroundColor="@color/m3_dark_surface_container_highest"
+                    app:chipIcon="@drawable/ic_folder"
+                    app:chipIconTint="@color/m3_dark_primary"
+                    app:chipStrokeColor="@color/m3_dark_card_stroke"
+                    app:chipStrokeWidth="1dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- RecyclerView for File list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_files"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingVertical="4dp"
+            android:scrollbars="vertical" />
+
+        <!-- Empty state view -->
+        <LinearLayout
+            android:id="@+id/view_empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_folder"
+                app:tint="@color/m3_dark_outline" />
+
+            <TextView
+                android:id="@+id/text_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="This folder is empty"
+                android:textColor="@color/m3_dark_on_surface_variant"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Permission banner -->
+        <LinearLayout
+            android:id="@+id/view_permission_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_session_card_active"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage Permission Required"
+                android:textColor="@color/m3_dark_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="To access shared device storage (~/storage/shared), Termux needs storage permission. Tap below to grant permission and run storage setup."
+                android:textColor="@color/m3_dark_on_surface"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_grant_storage_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Grant Permission / Setup Storage"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/m3_dark_primary_container"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+
+        <!-- Clipboard Action Bar (shown during Copy or Move) -->
+        <LinearLayout
+            android:id="@+id/view_clipboard_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_session_card"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/text_clipboard_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/m3_dark_on_surface"
+                android:textSize="13sp"
+                tools:text="Copy: main.py" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_paste_clipboard"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                android:text="Paste Here"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:backgroundTint="@color/m3_dark_primary_container"
+                app:cornerRadius="10dp" />
+
+            <ImageButton
+                android:id="@+id/button_cancel_clipboard"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Cancel"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                app:tint="@color/m3_dark_on_surface_variant" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Floating Action Button for creating folder / file -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_storage_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="18dp"
+        android:contentDescription="New folder"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/m3_dark_primary_container"
+        app:elevation="6dp"
+        app:tint="@color/m3_dark_primary" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

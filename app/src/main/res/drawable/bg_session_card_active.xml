@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/m3_dark_surface_variant">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/m3_dark_session_active_bg" />
+            <stroke
+                android:width="1.5dp"
+                android:color="@color/m3_dark_session_active_border" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</ripple>

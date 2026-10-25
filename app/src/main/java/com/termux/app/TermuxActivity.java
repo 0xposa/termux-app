@@ -251,6 +251,8 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
 
         setToggleKeyboardView();
 
+        setAddButtonView();
+
         registerForContextMenu(mTerminalView);
 
         FileReceiverActivity.updateFileReceiverActivityComponentsState(this);
@@ -592,6 +594,58 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
             toggleTerminalToolbar();
             return true;
         });
+    }
+
+    private void setAddButtonView() {
+        View fabAdd = findViewById(R.id.fab_add);
+        if (fabAdd != null) {
+            fabAdd.setOnClickListener(v -> showAddOptionsDialog());
+            fabAdd.setOnLongClickListener(v -> {
+                TextInputDialogUtils.textInput(TermuxActivity.this, R.string.title_create_named_session, null,
+                    R.string.action_create_named_session_confirm, text -> mTermuxTerminalSessionActivityClient.addNewSession(false, text),
+                    R.string.action_new_session_failsafe, text -> mTermuxTerminalSessionActivityClient.addNewSession(true, text),
+                    -1, null, null);
+                return true;
+            });
+        }
+
+        View drawerAddButton = findViewById(R.id.drawer_add_button);
+        if (drawerAddButton != null) {
+            drawerAddButton.setOnClickListener(v -> showAddOptionsDialog());
+        }
+
+        View drawerStorageButton = findViewById(R.id.drawer_storage_button);
+        if (drawerStorageButton != null) {
+            drawerStorageButton.setOnClickListener(v -> {
+                openStorageManager();
+                getDrawer().closeDrawers();
+            });
+        }
+    }
+
+    public void showAddOptionsDialog() {
+        final CharSequence[] options = new CharSequence[]{
+            getString(R.string.title_new_terminal_session),
+            getString(R.string.title_storage_manager)
+        };
+
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.title_add_menu)
+            .setItems(options, (dialog, which) -> {
+                if (which == 0) {
+                    mTermuxTerminalSessionActivityClient.addNewSession(false, null);
+                    getDrawer().closeDrawers();
+                } else if (which == 1) {
+                    openStorageManager();
+                    getDrawer().closeDrawers();
+                }
+            })
+            .show();
+    }
+
+    public void openStorageManager() {
+        Intent intent = new Intent(this, com.termux.app.activities.TermuxStorageActivity.class);
+        ActivityUtils.startActivity(this, intent);
     }
 
 

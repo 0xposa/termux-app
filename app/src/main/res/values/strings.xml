@@ -235,4 +235,31 @@
     <!-- Donate Preference -->
     <string name="donate_preference_title">Donate</string>
 
+    <!-- Redesign & Storage Manager Strings -->
+    <string name="title_add_menu">Create New</string>
+    <string name="title_new_terminal_session">Terminal (New Shell)</string>
+    <string name="title_storage_manager">Storage (File Manager)</string>
+    <string name="desc_new_terminal_session">Create a new shell session without closing existing sessions</string>
+    <string name="desc_storage_manager">Browse, manage, and view Termux files and shared storage</string>
+    <string name="action_storage_manager">Storage Manager</string>
+    <string name="action_create_folder">Create Folder</string>
+    <string name="action_rename">Rename</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_move">Move</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_paste">Paste</string>
+    <string name="confirm_delete_title">Confirm Delete</string>
+    <string name="confirm_delete_message">Are you sure you want to delete \"%1$s\"?</string>
+    <string name="prompt_folder_name">Enter folder name:</string>
+    <string name="prompt_new_name">Enter new name:</string>
+    <string name="msg_folder_created">Folder created successfully</string>
+    <string name="msg_file_deleted">Item deleted</string>
+    <string name="msg_renamed">Item renamed</string>
+    <string name="msg_pasted">Item pasted successfully</string>
+    <string name="err_file_op_failed">Operation failed</string>
+    <string name="err_permission_denied">Permission denied: cannot access path</string>
+    <string name="title_setup_storage_prompt">Termux Storage Setup</string>
+    <string name="msg_setup_storage_prompt">Shared storage symlinks (~/storage/shared) are not yet initialized. Would you like to run storage setup now?</string>
+    <string name="action_setup_storage">Setup Storage</string>
+
 </resources>

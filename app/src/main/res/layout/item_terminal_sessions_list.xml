@@ -1,9 +1,104 @@
-<com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/session_title"
-    android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:background="@drawable/session_background_selected"
-    android:ellipsize="marquee"
-    android:gravity="start|center_vertical"
-    android:padding="6dip"
-    android:textSize="14sp" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/session_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/bg_session_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="6dp"
+    android:paddingBottom="10dp">
+
+    <!-- Status dot indicator -->
+    <View
+        android:id="@+id/session_status_indicator"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_fab_circle"
+        app:backgroundTint="@color/m3_dark_badge_running" />
+
+    <!-- Session details -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/session_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/m3_dark_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="#1" />
+
+            <TextView
+                android:id="@+id/session_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/m3_dark_on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Terminal" />
+
+            <TextView
+                android:id="@+id/session_active_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_pill_badge"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="ACTIVE"
+                android:textColor="@color/m3_dark_primary"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/session_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textColor="@color/m3_dark_on_surface_variant"
+            android:textSize="11sp"
+            tools:text="~/projects/termux-app" />
+    </LinearLayout>
+
+    <!-- Close session button -->
+    <ImageButton
+        android:id="@+id/session_close_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/action_kill_process"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close"
+        app:tint="@color/m3_dark_on_surface_variant" />
+
+</LinearLayout>

@@ -1,3 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Material You Dark Theme Palette -->
+    <color name="m3_dark_primary">#A8C7FA</color>
+    <color name="m3_dark_on_primary">#062E6F</color>
+    <color name="m3_dark_primary_container">#0842A0</color>
+    <color name="m3_dark_on_primary_container">#D3E3FD</color>
+
+    <color name="m3_dark_secondary">#7FCFFF</color>
+    <color name="m3_dark_on_secondary">#003546</color>
+    <color name="m3_dark_secondary_container">#004D65</color>
+    <color name="m3_dark_on_secondary_container">#BFE9FF</color>
+
+    <color name="m3_dark_background">#111318</color>
+    <color name="m3_dark_on_background">#E2E2E6</color>
+    <color name="m3_dark_surface">#111318</color>
+    <color name="m3_dark_on_surface">#E2E2E6</color>
+    <color name="m3_dark_surface_container">#1A1D22</color>
+    <color name="m3_dark_surface_container_high">#24272D</color>
+    <color name="m3_dark_surface_container_highest">#2E3138</color>
+    <color name="m3_dark_surface_variant">#43474E</color>
+    <color name="m3_dark_on_surface_variant">#C3C7CF</color>
+    <color name="m3_dark_outline">#8C9199</color>
+    <color name="m3_dark_outline_variant">#363A42</color>
+
+    <color name="m3_dark_card_stroke">#2E333C</color>
+    <color name="m3_dark_session_active_bg">#182638</color>
+    <color name="m3_dark_session_active_border">#A8C7FA</color>
+    <color name="m3_dark_badge_running">#4CAF50</color>
+    <color name="m3_dark_badge_exited">#EF5350</color>
+    <color name="m3_dark_error">#FFB4AB</color>
 </resources>
